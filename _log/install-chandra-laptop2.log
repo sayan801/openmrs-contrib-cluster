@@ -1,0 +1,353 @@
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ kubectl version
+Command 'kubectl' not found, but can be installed with:
+sudo snap install kubectl
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get update
+[sudo] password for technicise-laptop-2: 
+Hit:1 https://updates.signal.org/desktop/apt xenial InRelease                  
+Get:2 https://dl.google.com/linux/chrome/deb stable InRelease [1,825 B]        
+Get:3 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1,223 B]
+Get:4 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]      
+Hit:5 http://archive.ubuntu.com/ubuntu noble InRelease                         
+Get:6 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]        
+Ign:7 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 InRelease
+Hit:8 https://dl.yarnpkg.com/debian stable InRelease                           
+Err:9 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release
+  404  Not Found [IP: 2a04:4e42:42::820 443]
+Hit:10 https://download.zulip.com/desktop/apt stable InRelease                 
+Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1,054 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]     
+Get:13 https://repo.protonvpn.com/debian stable InRelease [2,967 B]            
+Err:13 https://repo.protonvpn.com/debian stable InRelease                      
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1,314 kB]
+Get:15 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [183 kB]
+Get:16 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.6 kB]
+Get:17 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [878 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [264 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [164 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1,120 kB]
+Get:21 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [194 kB]
+Get:22 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.2 kB]
+Get:23 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Get:24 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+Get:25 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [287 kB]
+Get:26 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [377 kB]
+Get:27 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+Get:28 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:29 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7,068 B]
+Get:30 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [28.4 kB]
+Get:31 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+Get:32 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Reading package lists... Done                                                  
+E: The repository 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release' no longer has a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repo.protonvpn.com/debian stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ca-certificates is already the newest version (20240203).
+curl is already the newest version (8.5.0-2ubuntu10.6).
+gnupg is already the newest version (2.4.4-2ubuntu17.3).
+gnupg set to manually installed.
+The following packages were automatically installed and are no longer required:
+  apport-symptoms cabextract cloud-guest-utils eatmydata fdisk gdisk
+  gir1.2-dbusmenu-glib-0.4 gir1.2-dee-1.0 gir1.2-gudev-1.0 gir1.2-handy-1
+  gir1.2-javascriptcoregtk-4.1 gir1.2-snapd-2 gir1.2-udisks-2.0
+  gir1.2-unity-7.0 gir1.2-webkit2-4.1 libeatmydata1 libglu1-mesa libmspack0t64
+  libopengl0 libxatracker2 libxcb-damage0 libxvmc1 python-babel-localedata
+  python3-aiosignal python3-async-timeout python3-attr python3-babel
+  python3-certifi python3-configobj python3-dateutil python3-debconf
+  python3-frozenlist python3-gnupg python3-jaraco.classes python3-jeepney
+  python3-jinja2 python3-json-pointer python3-jsonpatch python3-jsonschema
+  python3-keyring python3-lazr.uri python3-multidict python3-openssl
+  python3-problem-report python3-proton-vpn-local-agent python3-pyrsistent
+  python3-secretstorage python3-serial python3-systemd python3-wadllib
+  ubuntu-advantage-desktop-daemon unattended-upgrades x11-apps
+  x11-session-utils xbitmaps xcvt xfonts-scalable xinit xinput
+  xserver-xorg-core xserver-xorg-input-all xserver-xorg-input-libinput
+  xserver-xorg-input-wacom xserver-xorg-video-all xserver-xorg-video-amdgpu
+  xserver-xorg-video-ati xserver-xorg-video-fbdev xserver-xorg-video-intel
+  xserver-xorg-video-nouveau xserver-xorg-video-qxl xserver-xorg-video-radeon
+  xserver-xorg-video-vesa xserver-xorg-video-vmware
+Use 'sudo apt autoremove' to remove them.
+Suggested packages:
+  apt-doc aptitude | synaptic | wajig
+The following NEW packages will be installed:
+  apt-transport-https
+The following packages will be upgraded:
+  apt apt-utils libapt-pkg6.0t64
+3 upgraded, 1 newly installed, 0 to remove and 349 not upgraded.
+Need to get 2,580 kB of archives.
+After this operation, 47.1 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libapt-pkg6.0t64 amd64 2.8.3 [985 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apt amd64 2.8.3 [1,376 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apt-utils amd64 2.8.3 [216 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 apt-transport-https all 2.8.3 [3,970 B]
+Fetched 2,580 kB in 6s (459 kB/s)               
+(Reading database ... 225041 files and directories currently installed.)
+Preparing to unpack .../libapt-pkg6.0t64_2.8.3_amd64.deb ...
+Unpacking libapt-pkg6.0t64:amd64 (2.8.3) over (2.7.14build2) ...
+Setting up libapt-pkg6.0t64:amd64 (2.8.3) ...
+(Reading database ... 225041 files and directories currently installed.)
+Preparing to unpack .../archives/apt_2.8.3_amd64.deb ...
+Unpacking apt (2.8.3) over (2.7.14build2) ...
+Setting up apt (2.8.3) ...
+(Reading database ... 225041 files and directories currently installed.)
+Preparing to unpack .../apt-utils_2.8.3_amd64.deb ...
+Unpacking apt-utils (2.8.3) over (2.7.14build2) ...
+Selecting previously unselected package apt-transport-https.
+Preparing to unpack .../apt-transport-https_2.8.3_all.deb ...
+Unpacking apt-transport-https (2.8.3) ...
+Setting up apt-utils (2.8.3) ...
+Setting up apt-transport-https (2.8.3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list 
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get update
+Get:2 https://repo.protonvpn.com/debian stable InRelease [2,967 B]             
+Err:2 https://repo.protonvpn.com/debian stable InRelease                       
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+Hit:3 http://archive.ubuntu.com/ubuntu noble InRelease                         
+Hit:4 https://dl.yarnpkg.com/debian stable InRelease                           
+Hit:5 https://updates.signal.org/desktop/apt xenial InRelease                  
+Hit:6 http://archive.ubuntu.com/ubuntu noble-updates InRelease                 
+Ign:7 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 InRelease
+Err:8 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release
+  404  Not Found [IP: 2a04:4e42:42::820 443]
+Hit:9 http://archive.ubuntu.com/ubuntu noble-backports InRelease               
+Hit:10 http://security.ubuntu.com/ubuntu noble-security InRelease              
+Hit:11 https://download.zulip.com/desktop/apt stable InRelease                 
+Hit:12 https://dl.google.com/linux/chrome/deb stable InRelease                 
+Get:1 https://prod-cdn.packages.k8s.io/repositories/isv:/kubernetes:/core:/stable:/v1.33/deb  InRelease [1,186 B]
+Get:13 https://prod-cdn.packages.k8s.io/repositories/isv:/kubernetes:/core:/stable:/v1.33/deb  Packages [6,400 B]
+Reading package lists... Done  
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repo.protonvpn.com/debian stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+E: The repository 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release' no longer has a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get install -y kubectl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  apport-symptoms cabextract cloud-guest-utils eatmydata fdisk gdisk
+  gir1.2-dbusmenu-glib-0.4 gir1.2-dee-1.0 gir1.2-gudev-1.0 gir1.2-handy-1
+  gir1.2-javascriptcoregtk-4.1 gir1.2-snapd-2 gir1.2-udisks-2.0
+  gir1.2-unity-7.0 gir1.2-webkit2-4.1 libeatmydata1 libglu1-mesa libmspack0t64
+  libopengl0 libxatracker2 libxcb-damage0 libxvmc1 python-babel-localedata
+  python3-aiosignal python3-async-timeout python3-attr python3-babel
+  python3-certifi python3-configobj python3-dateutil python3-debconf
+  python3-frozenlist python3-gnupg python3-jaraco.classes python3-jeepney
+  python3-jinja2 python3-json-pointer python3-jsonpatch python3-jsonschema
+  python3-keyring python3-lazr.uri python3-multidict python3-openssl
+  python3-problem-report python3-proton-vpn-local-agent python3-pyrsistent
+  python3-secretstorage python3-serial python3-systemd python3-wadllib
+  ubuntu-advantage-desktop-daemon unattended-upgrades x11-apps
+  x11-session-utils xbitmaps xcvt xfonts-scalable xinit xinput
+  xserver-xorg-core xserver-xorg-input-all xserver-xorg-input-libinput
+  xserver-xorg-input-wacom xserver-xorg-video-all xserver-xorg-video-amdgpu
+  xserver-xorg-video-ati xserver-xorg-video-fbdev xserver-xorg-video-intel
+  xserver-xorg-video-nouveau xserver-xorg-video-qxl xserver-xorg-video-radeon
+  xserver-xorg-video-vesa xserver-xorg-video-vmware
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  kubectl
+0 upgraded, 1 newly installed, 0 to remove and 349 not upgraded.
+Need to get 11.7 MB of archives.
+After this operation, 60.2 MB of additional disk space will be used.
+Get:1 https://prod-cdn.packages.k8s.io/repositories/isv:/kubernetes:/core:/stable:/v1.33/deb  kubectl 1.33.3-1.1 [11.7 MB]
+Fetched 11.7 MB in 15s (774 kB/s)                                              
+Selecting previously unselected package kubectl.
+(Reading database ... 225045 files and directories currently installed.)
+Preparing to unpack .../kubectl_1.33.3-1.1_amd64.deb ...
+Unpacking kubectl (1.33.3-1.1) ...
+Setting up kubectl (1.33.3-1.1) ...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ kubectl version
+Client Version: v1.33.3
+Kustomize Version: v5.6.0
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+Hit:1 https://dl.google.com/linux/chrome/deb stable InRelease                  
+Ign:3 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 InRelease
+Err:4 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release
+  404  Not Found [IP: 2a04:4e42:42::820 443]
+Hit:5 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Hit:6 http://archive.ubuntu.com/ubuntu noble InRelease                         
+Hit:7 https://dl.yarnpkg.com/debian stable InRelease                           
+Hit:8 http://archive.ubuntu.com/ubuntu noble-updates InRelease                 
+Hit:9 https://updates.signal.org/desktop/apt xenial InRelease                  
+Hit:10 http://archive.ubuntu.com/ubuntu noble-backports InRelease              
+Hit:11 https://download.zulip.com/desktop/apt stable InRelease      
+Get:12 https://repo.protonvpn.com/debian stable InRelease [2,967 B]
+Err:12 https://repo.protonvpn.com/debian stable InRelease        
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+Hit:2 https://prod-cdn.packages.k8s.io/repositories/isv:/kubernetes:/core:/stable:/v1.33/deb  InRelease
+Reading package lists... Done              
+E: The repository 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release' no longer has a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repo.protonvpn.com/debian stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+--2025-08-05 11:25:12--  https://apt.releases.hashicorp.com/gpg
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 2600:9000:264c:9200:18:566b:ecc0:93a1, 2600:9000:264c:3600:18:566b:ecc0:93a1, 2600:9000:264c:4400:18:566b:ecc0:93a1, ...
+Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|2600:9000:264c:9200:18:566b:ecc0:93a1|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 3980 (3.9K) [binary/octet-stream]
+Saving to: ‘STDOUT’
+
+-                   100%[===================>]   3.89K  --.-KB/s    in 0s      
+
+2025-08-05 11:25:13 (527 MB/s) - written to stdout [3980/3980]
+
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ gpg --no-default-keyring \
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+--fingerprint
+[keyboxd]
+---------
+pub   rsa3072 2025-03-03 [SC] [expires: 2027-03-03]
+      84B0 D349 2C76 C9C6 F587  3C18 EDA3 E226 3034 9F1C
+uid           [ unknown] Proton Technologies AG <opensource@proton.me>
+sub   rsa3072 2025-03-03 [E] [expires: 2027-03-03]
+
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+deb [arch=amd64 signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com noble main
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt update
+Hit:1 https://dl.google.com/linux/chrome/deb stable InRelease                  
+Hit:2 http://archive.ubuntu.com/ubuntu noble InRelease                         
+Hit:3 http://security.ubuntu.com/ubuntu noble-security InRelease               
+Get:4 https://apt.releases.hashicorp.com noble InRelease [12.9 kB]             
+Hit:5 https://dl.yarnpkg.com/debian stable InRelease                           
+Hit:6 https://updates.signal.org/desktop/apt xenial InRelease                  
+Ign:7 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 InRelease
+Hit:8 http://archive.ubuntu.com/ubuntu noble-updates InRelease                 
+Err:9 https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release
+  404  Not Found [IP: 2a04:4e42:42::820 443]
+Hit:10 http://archive.ubuntu.com/ubuntu noble-backports InRelease              
+Hit:11 https://download.zulip.com/desktop/apt stable InRelease                 
+Get:12 https://apt.releases.hashicorp.com noble/main amd64 Packages [195 kB]   
+Get:14 https://repo.protonvpn.com/debian stable InRelease [2,967 B]           
+Err:14 https://repo.protonvpn.com/debian stable InRelease              
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+Hit:13 https://prod-cdn.packages.k8s.io/repositories/isv:/kubernetes:/core:/stable:/v1.33/deb  InRelease
+Reading package lists... Done
+E: The repository 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 Release' no longer has a Release file.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repo.protonvpn.com/debian stable InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY EDA3E22630349F1C
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ sudo apt-get install terraform
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  apport-symptoms cabextract cloud-guest-utils eatmydata fdisk gdisk
+  gir1.2-dbusmenu-glib-0.4 gir1.2-dee-1.0 gir1.2-gudev-1.0 gir1.2-handy-1
+  gir1.2-javascriptcoregtk-4.1 gir1.2-snapd-2 gir1.2-udisks-2.0
+  gir1.2-unity-7.0 gir1.2-webkit2-4.1 libeatmydata1 libglu1-mesa libmspack0t64
+  libopengl0 libxatracker2 libxcb-damage0 libxvmc1 python-babel-localedata
+  python3-aiosignal python3-async-timeout python3-attr python3-babel
+  python3-certifi python3-configobj python3-dateutil python3-debconf
+  python3-frozenlist python3-gnupg python3-jaraco.classes python3-jeepney
+  python3-jinja2 python3-json-pointer python3-jsonpatch python3-jsonschema
+  python3-keyring python3-lazr.uri python3-multidict python3-openssl
+  python3-problem-report python3-proton-vpn-local-agent python3-pyrsistent
+  python3-secretstorage python3-serial python3-systemd python3-wadllib
+  ubuntu-advantage-desktop-daemon unattended-upgrades x11-apps
+  x11-session-utils xbitmaps xcvt xfonts-scalable xinit xinput
+  xserver-xorg-core xserver-xorg-input-all xserver-xorg-input-libinput
+  xserver-xorg-input-wacom xserver-xorg-video-all xserver-xorg-video-amdgpu
+  xserver-xorg-video-ati xserver-xorg-video-fbdev xserver-xorg-video-intel
+  xserver-xorg-video-nouveau xserver-xorg-video-qxl xserver-xorg-video-radeon
+  xserver-xorg-video-vesa xserver-xorg-video-vmware
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  terraform
+0 upgraded, 1 newly installed, 0 to remove and 349 not upgraded.
+Need to get 28.4 MB of archives.
+After this operation, 93.6 MB of additional disk space will be used.
+Get:1 https://apt.releases.hashicorp.com noble/main amd64 terraform amd64 1.12.2-1 [28.4 MB]
+Fetched 28.4 MB in 16s (1,727 kB/s)                                            
+Selecting previously unselected package terraform.
+(Reading database ... 225049 files and directories currently installed.)
+Preparing to unpack .../terraform_1.12.2-1_amd64.deb ...
+Unpacking terraform (1.12.2-1) ...
+Setting up terraform (1.12.2-1) ...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ terraform version
+Terraform v1.12.2
+on linux_amd64
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/.aws$ cd ~/code/
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code$ git clone https://github.com/sayan801/openmrs-contrib-cluster.git
+Cloning into 'openmrs-contrib-cluster'...
+remote: Enumerating objects: 456, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 456 (delta 14), reused 11 (delta 10), pack-reused 435 (from 1)
+Receiving objects: 100% (456/456), 93.77 KiB | 142.00 KiB/s, done.
+Resolving deltas: 100% (258/258), done.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code$ cd open
+openatna/
+openehr-experiments-at-technicise/
+openmrs-contrib-cluster/
+openmrs-esm-shift-interop-technicise-ui-app/
+openmrs-experiments-at-technicise/
+openmrs-module-providermanagement/
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code$ cd openmrs-contrib-cluster/
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster$   cd terraform-backend
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-backend$   terraform init
+Initializing the backend...
+╷
+│ Error: Unsupported Terraform Core version
+│ 
+│   on versions.tf line 2, in terraform:
+│    2:   required_version = ">= 1.4.5, < 1.5"
+│ 
+│ This configuration does not support Terraform version 1.12.2. To proceed,
+│ either choose another supported Terraform version or update this version
+│ constraint. Version constraints are normally set for good reason, so updating
+│ the constraint may lead to other errors or unexpected behavior.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-backend$ terraform version
+Terraform v1.12.2
+on linux_amd64
++ provider registry.terraform.io/hashicorp/aws v5.0.1
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-backend$ terraform init
+Initializing the backend...
+╷
+│ Error: Unsupported Terraform Core version
+│ 
+│   on versions.tf line 2, in terraform:
+│    2:   required_version = ">= 1.4.5, < 1.12"
+│ 
+│ This configuration does not support Terraform version 1.12.2. To proceed,
+│ either choose another supported Terraform version or update this version
+│ constraint. Version constraints are normally set for good reason, so updating
+│ the constraint may lead to other errors or unexpected behavior.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-backend$ terraform init
+Initializing the backend...
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Installing hashicorp/aws v5.0.1...
+- Installed hashicorp/aws v5.0.1 (signed by HashiCorp)
+Terraform has made some changes to the provider dependency selections recorded
+in the .terraform.lock.hcl file. Review those changes and commit them to your
+version control system if they represent changes you intended to make.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-backend$ 
+
