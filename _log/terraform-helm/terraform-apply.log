@@ -1,0 +1,37 @@
+technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+╷
+│ Error: Failed to read variables file
+│ 
+│ Given variables file nonprod.tfvars does not exist.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+╷
+│ Error: Failed to read variables file
+│ 
+│ Given variables file nonprod.tfvars does not exist.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+Releasing state lock. This may take a few moments...
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 24, in provider "helm":
+│   24:   kubernetes {
+│ 
+│ Blocks of type "kubernetes" are not expected here. Did you mean to define argument "kubernetes"? If so, use the equals sign to assign it a value.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+╷
+│ Error: Missing key/value separator
+│ 
+│   on main.tf line 27, in provider "helm":
+│   24:   kubernetes = {
+│   25:     host                   = data.aws_eks_cluster.default.endpoint
+│   26:     cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
+│   27:     exec {
+│ 
+│ Expected an equals sign ("=") to mark the beginning of the attribute value.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+
