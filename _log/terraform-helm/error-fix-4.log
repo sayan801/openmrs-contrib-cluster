@@ -226,3 +226,39 @@ Events:
 error: 'Access denied for user 'root'@'localhost' (using password: YES)'
   Normal  Pulled  2m12s (x8 over 22m)  kubelet  Container image "docker.io/bitnami/mariadb:10.11" already present on machine
 (base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster$ 
+
+
+Your openmrs-mariadb-secondary-0 pod is failing its liveness probe due to:
+
+1 vulnerability
+Root cause:
+The secondary MariaDB pod cannot authenticate as root using the password provided. This is usually because the value of MARIADB_MASTER_ROOT_PASSWORD (from the secret openmrs-mariadb) is incorrect or not in sync with the primary.
+
+How to fix
+Check the secret values:
+
+Decode the mariadb-root-password:
+
+Do this for both the primary and secondary pods if you have separate secrets.
+
+Ensure the root password in the secret matches the actual root password on the primary.
+
+If you changed the root password after initial deployment, update the secret so both primary and secondary use the same value.
+If needed, reset the secret:
+
+Update the secret with the correct password:
+
+kubectl create secret generic openmrs-mariadb \
+  --from-literal=mariadb-root-password=YOUR_PASSWORD \
+  --from-literal=mariadb-replication-password=YOUR_REPLICATION_PASSWORD \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+Then restart the secondary pod:
+
+kubectl delete pod openmrs-mariadb-secondary-0
+
+Summary
+The secondary cannot authenticate as root due to a password mismatch.
+Make sure the mariadb-root-password in the secret is correct and matches the primary.
+Update the secret and restart the secondary pod.
+Let me know if you need help with the exact commands or troubleshooting further!
