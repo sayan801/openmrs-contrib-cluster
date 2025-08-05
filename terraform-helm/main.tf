@@ -21,10 +21,10 @@ data "aws_eks_cluster" "default" {
 }
 
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     host                   = data.aws_eks_cluster.default.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
-    exec {
+    exec = {
       api_version = "client.authentication.k8s.io/v1beta1"
       args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.default.id]
       command     = "aws"
@@ -58,37 +58,34 @@ resource "helm_release" "aws_load_balancer_controller" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
   namespace  = "kube-system"
-  version    = "1.11"
+  version    = "1.11.0"
 
-  set {
-    name  = "region"
-    value = local.region
-  }
-
-  set {
-    name  = "vpcId"
-    value = data.aws_eks_cluster.default.vpc_config[0].vpc_id
-  }
-
-  set {
-    name  = "clusterName"
-    value = data.aws_eks_cluster.default.id
-  }
-
-  set {
-    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = module.aws_load_balancer_controller_irsa_role.iam_role_arn
-  }
-
-  set {
-    name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
-  }
-
-  set {
-    name  = "ingressClassParams.spec.scheme"
-    value = "internet-facing"
-  }
+  set = [
+    {
+      name  = "region"
+      value = local.region
+    },
+    {
+      name  = "vpcId"
+      value = data.aws_eks_cluster.default.vpc_config[0].vpc_id
+    },
+    {
+      name  = "clusterName"
+      value = data.aws_eks_cluster.default.id
+    },
+    {
+      name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+      value = module.aws_load_balancer_controller_irsa_role.iam_role_arn
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "ingressClassParams.spec.scheme"
+      value = "internet-facing"
+    }
+  ]
 }
 
 resource "helm_release" "openmrs" {
@@ -98,13 +95,14 @@ resource "helm_release" "openmrs" {
   chart      = "openmrs"
   version    = "0.1.5"
 
-  set {
-    name  = "openmrs-gateway.ingress.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "openmrs-gateway.ingress.className"
-    value = "alb"
-  }
+  set = [
+    {
+      name  = "openmrs-gateway.ingress.enabled"
+      value = "true"
+    },
+    {
+      name  = "openmrs-gateway.ingress.className"
+      value = "alb"
+    }
+  ]
 }

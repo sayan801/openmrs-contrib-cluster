@@ -35,3 +35,938 @@ Releasing state lock. This may take a few moments...
 ╵
 (base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
 
+
+
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+Releasing state lock. This may take a few moments...
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 63, in resource "helm_release" "aws_load_balancer_controller":
+│   63:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 68, in resource "helm_release" "aws_load_balancer_controller":
+│   68:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 73, in resource "helm_release" "aws_load_balancer_controller":
+│   73:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 78, in resource "helm_release" "aws_load_balancer_controller":
+│   78:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 83, in resource "helm_release" "aws_load_balancer_controller":
+│   83:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 88, in resource "helm_release" "aws_load_balancer_controller":
+│   88:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 101, in resource "helm_release" "openmrs":
+│  101:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 106, in resource "helm_release" "openmrs":
+│  106:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+data.aws_eks_cluster.default: Read complete after 2s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 3s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform planned the following actions, but then encountered a problem:
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0] will be created
+  + resource "aws_iam_policy" "load_balancer_controller" {
+      + arn         = (known after apply)
+      + description = "Provides permissions for AWS Load Balancer Controller addon"
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + name_prefix = "AmazonEKS_AWS_Load_Balancer_Controller-"
+      + path        = "/"
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "iam:CreateServiceLinkedRole"
+                      + Condition = {
+                          + StringEquals = {
+                              + "iam:AWSServiceName" = "elasticloadbalancing.amazonaws.com"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:DescribeTrustStores",
+                          + "elasticloadbalancing:DescribeTargetHealth",
+                          + "elasticloadbalancing:DescribeTargetGroups",
+                          + "elasticloadbalancing:DescribeTargetGroupAttributes",
+                          + "elasticloadbalancing:DescribeTags",
+                          + "elasticloadbalancing:DescribeSSLPolicies",
+                          + "elasticloadbalancing:DescribeRules",
+                          + "elasticloadbalancing:DescribeLoadBalancers",
+                          + "elasticloadbalancing:DescribeLoadBalancerAttributes",
+                          + "elasticloadbalancing:DescribeListeners",
+                          + "elasticloadbalancing:DescribeListenerCertificates",
+                          + "elasticloadbalancing:DescribeListenerAttributes",
+                          + "ec2:GetSecurityGroupsForVpc",
+                          + "ec2:GetCoipPoolUsage",
+                          + "ec2:DescribeVpcs",
+                          + "ec2:DescribeVpcPeeringConnections",
+                          + "ec2:DescribeTags",
+                          + "ec2:DescribeSubnets",
+                          + "ec2:DescribeSecurityGroups",
+                          + "ec2:DescribeNetworkInterfaces",
+                          + "ec2:DescribeInternetGateways",
+                          + "ec2:DescribeInstances",
+                          + "ec2:DescribeCoipPools",
+                          + "ec2:DescribeAvailabilityZones",
+                          + "ec2:DescribeAddresses",
+                          + "ec2:DescribeAccountAttributes",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "wafv2:GetWebACLForResource",
+                          + "wafv2:GetWebACL",
+                          + "wafv2:DisassociateWebACL",
+                          + "wafv2:AssociateWebACL",
+                          + "waf-regional:GetWebACLForResource",
+                          + "waf-regional:GetWebACL",
+                          + "waf-regional:DisassociateWebACL",
+                          + "waf-regional:AssociateWebACL",
+                          + "shield:GetSubscriptionState",
+                          + "shield:DescribeProtection",
+                          + "shield:DeleteProtection",
+                          + "shield:CreateProtection",
+                          + "iam:ListServerCertificates",
+                          + "iam:GetServerCertificate",
+                          + "cognito-idp:DescribeUserPoolClient",
+                          + "acm:ListCertificates",
+                          + "acm:DescribeCertificate",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "ec2:RevokeSecurityGroupIngress",
+                          + "ec2:CreateSecurityGroup",
+                          + "ec2:AuthorizeSecurityGroupIngress",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = "ec2:CreateTags"
+                      + Condition = {
+                          + Null         = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                          + StringEquals = {
+                              + "ec2:CreateAction" = "CreateSecurityGroup"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "arn:aws:ec2:*:*:security-group/*"
+                    },
+                  + {
+                      + Action    = [
+                          + "ec2:DeleteTags",
+                          + "ec2:CreateTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster"  = "true"
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "arn:aws:ec2:*:*:security-group/*"
+                    },
+                  + {
+                      + Action    = [
+                          + "ec2:RevokeSecurityGroupIngress",
+                          + "ec2:DeleteSecurityGroup",
+                          + "ec2:AuthorizeSecurityGroupIngress",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:CreateTargetGroup",
+                          + "elasticloadbalancing:CreateLoadBalancer",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:DeleteRule",
+                          + "elasticloadbalancing:DeleteListener",
+                          + "elasticloadbalancing:CreateRule",
+                          + "elasticloadbalancing:CreateListener",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:RemoveTags",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster"  = "true"
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = [
+                          + "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        ]
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:RemoveTags",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = [
+                          + "arn:aws:elasticloadbalancing:*:*:listener/net/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener-rule/net/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*",
+                        ]
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:SetSubnets",
+                          + "elasticloadbalancing:SetSecurityGroups",
+                          + "elasticloadbalancing:SetIpAddressType",
+                          + "elasticloadbalancing:ModifyTargetGroupAttributes",
+                          + "elasticloadbalancing:ModifyTargetGroup",
+                          + "elasticloadbalancing:ModifyLoadBalancerAttributes",
+                          + "elasticloadbalancing:ModifyListenerAttributes",
+                          + "elasticloadbalancing:DeleteTargetGroup",
+                          + "elasticloadbalancing:DeleteLoadBalancer",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action    = "elasticloadbalancing:AddTags"
+                      + Condition = {
+                          + Null         = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                          + StringEquals = {
+                              + "elasticloadbalancing:CreateAction" = [
+                                  + "CreateTargetGroup",
+                                  + "CreateLoadBalancer",
+                                ]
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = [
+                          + "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        ]
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:RegisterTargets",
+                          + "elasticloadbalancing:DeregisterTargets",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:SetWebAcl",
+                          + "elasticloadbalancing:RemoveListenerCertificates",
+                          + "elasticloadbalancing:ModifyRule",
+                          + "elasticloadbalancing:ModifyListener",
+                          + "elasticloadbalancing:AddListenerCertificates",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + policy_id   = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRoleWithWebIdentity"
+                      + Condition = {
+                          + StringEquals = {
+                              + "oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A:aud" = "sts.amazonaws.com"
+                              + "oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A:sub" = "system:serviceaccount:kube-system:aws-load-balancer-controller"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Federated = "arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "aws-load-balancer-controller"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags_all              = (known after apply)
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0] will be created
+  + resource "aws_iam_role_policy_attachment" "load_balancer_controller" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "aws-load-balancer-controller"
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+╷
+│ Error: Planned version is different from configured version
+│ 
+│   with helm_release.aws_load_balancer_controller,
+│   on main.tf line 55, in resource "helm_release" "aws_load_balancer_controller":
+│   55: resource "helm_release" "aws_load_balancer_controller" {
+│ 
+│ The version in the configuration is "1.11" but the planned version is "1.11.0". 
+│ You should update the version in your configuration to "1.11.0", or remove the version attribute from your configuration.
+╵
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+data.aws_eks_cluster.default: Read complete after 4s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 5s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # helm_release.aws_load_balancer_controller will be created
+  + resource "helm_release" "aws_load_balancer_controller" {
+      + atomic                     = false
+      + chart                      = "aws-load-balancer-controller"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "aws-load-balancer-controller"
+      + namespace                  = "kube-system"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "https://aws.github.io/eks-charts"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "region"
+              + value = "us-east-2"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "vpcId"
+              + value = "vpc-0fee8e4ebbdcf7035"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "clusterName"
+              + value = "openmrs-cluster-nonprod"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+              + value = (known after apply)
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "serviceAccount.name"
+              + value = "aws-load-balancer-controller"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "ingressClassParams.spec.scheme"
+              + value = "internet-facing"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "1.11.0"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0] will be created
+  + resource "aws_iam_policy" "load_balancer_controller" {
+      + arn         = (known after apply)
+      + description = "Provides permissions for AWS Load Balancer Controller addon"
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + name_prefix = "AmazonEKS_AWS_Load_Balancer_Controller-"
+      + path        = "/"
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "iam:CreateServiceLinkedRole"
+                      + Condition = {
+                          + StringEquals = {
+                              + "iam:AWSServiceName" = "elasticloadbalancing.amazonaws.com"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:DescribeTrustStores",
+                          + "elasticloadbalancing:DescribeTargetHealth",
+                          + "elasticloadbalancing:DescribeTargetGroups",
+                          + "elasticloadbalancing:DescribeTargetGroupAttributes",
+                          + "elasticloadbalancing:DescribeTags",
+                          + "elasticloadbalancing:DescribeSSLPolicies",
+                          + "elasticloadbalancing:DescribeRules",
+                          + "elasticloadbalancing:DescribeLoadBalancers",
+                          + "elasticloadbalancing:DescribeLoadBalancerAttributes",
+                          + "elasticloadbalancing:DescribeListeners",
+                          + "elasticloadbalancing:DescribeListenerCertificates",
+                          + "elasticloadbalancing:DescribeListenerAttributes",
+                          + "ec2:GetSecurityGroupsForVpc",
+                          + "ec2:GetCoipPoolUsage",
+                          + "ec2:DescribeVpcs",
+                          + "ec2:DescribeVpcPeeringConnections",
+                          + "ec2:DescribeTags",
+                          + "ec2:DescribeSubnets",
+                          + "ec2:DescribeSecurityGroups",
+                          + "ec2:DescribeNetworkInterfaces",
+                          + "ec2:DescribeInternetGateways",
+                          + "ec2:DescribeInstances",
+                          + "ec2:DescribeCoipPools",
+                          + "ec2:DescribeAvailabilityZones",
+                          + "ec2:DescribeAddresses",
+                          + "ec2:DescribeAccountAttributes",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "wafv2:GetWebACLForResource",
+                          + "wafv2:GetWebACL",
+                          + "wafv2:DisassociateWebACL",
+                          + "wafv2:AssociateWebACL",
+                          + "waf-regional:GetWebACLForResource",
+                          + "waf-regional:GetWebACL",
+                          + "waf-regional:DisassociateWebACL",
+                          + "waf-regional:AssociateWebACL",
+                          + "shield:GetSubscriptionState",
+                          + "shield:DescribeProtection",
+                          + "shield:DeleteProtection",
+                          + "shield:CreateProtection",
+                          + "iam:ListServerCertificates",
+                          + "iam:GetServerCertificate",
+                          + "cognito-idp:DescribeUserPoolClient",
+                          + "acm:ListCertificates",
+                          + "acm:DescribeCertificate",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "ec2:RevokeSecurityGroupIngress",
+                          + "ec2:CreateSecurityGroup",
+                          + "ec2:AuthorizeSecurityGroupIngress",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = "ec2:CreateTags"
+                      + Condition = {
+                          + Null         = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                          + StringEquals = {
+                              + "ec2:CreateAction" = "CreateSecurityGroup"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "arn:aws:ec2:*:*:security-group/*"
+                    },
+                  + {
+                      + Action    = [
+                          + "ec2:DeleteTags",
+                          + "ec2:CreateTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster"  = "true"
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "arn:aws:ec2:*:*:security-group/*"
+                    },
+                  + {
+                      + Action    = [
+                          + "ec2:RevokeSecurityGroupIngress",
+                          + "ec2:DeleteSecurityGroup",
+                          + "ec2:AuthorizeSecurityGroupIngress",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:CreateTargetGroup",
+                          + "elasticloadbalancing:CreateLoadBalancer",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:DeleteRule",
+                          + "elasticloadbalancing:DeleteListener",
+                          + "elasticloadbalancing:CreateRule",
+                          + "elasticloadbalancing:CreateListener",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:RemoveTags",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster"  = "true"
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = [
+                          + "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        ]
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:RemoveTags",
+                          + "elasticloadbalancing:AddTags",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = [
+                          + "arn:aws:elasticloadbalancing:*:*:listener/net/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener/app/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener-rule/net/*/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:listener-rule/app/*/*/*",
+                        ]
+                    },
+                  + {
+                      + Action    = [
+                          + "elasticloadbalancing:SetSubnets",
+                          + "elasticloadbalancing:SetSecurityGroups",
+                          + "elasticloadbalancing:SetIpAddressType",
+                          + "elasticloadbalancing:ModifyTargetGroupAttributes",
+                          + "elasticloadbalancing:ModifyTargetGroup",
+                          + "elasticloadbalancing:ModifyLoadBalancerAttributes",
+                          + "elasticloadbalancing:ModifyListenerAttributes",
+                          + "elasticloadbalancing:DeleteTargetGroup",
+                          + "elasticloadbalancing:DeleteLoadBalancer",
+                        ]
+                      + Condition = {
+                          + Null = {
+                              + "aws:ResourceTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action    = "elasticloadbalancing:AddTags"
+                      + Condition = {
+                          + Null         = {
+                              + "aws:RequestTag/elbv2.k8s.aws/cluster" = "false"
+                            }
+                          + StringEquals = {
+                              + "elasticloadbalancing:CreateAction" = [
+                                  + "CreateTargetGroup",
+                                  + "CreateLoadBalancer",
+                                ]
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = [
+                          + "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/net/*/*",
+                          + "arn:aws:elasticloadbalancing:*:*:loadbalancer/app/*/*",
+                        ]
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:RegisterTargets",
+                          + "elasticloadbalancing:DeregisterTargets",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:elasticloadbalancing:*:*:targetgroup/*/*"
+                    },
+                  + {
+                      + Action   = [
+                          + "elasticloadbalancing:SetWebAcl",
+                          + "elasticloadbalancing:RemoveListenerCertificates",
+                          + "elasticloadbalancing:ModifyRule",
+                          + "elasticloadbalancing:ModifyListener",
+                          + "elasticloadbalancing:AddListenerCertificates",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + policy_id   = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRoleWithWebIdentity"
+                      + Condition = {
+                          + StringEquals = {
+                              + "oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A:aud" = "sts.amazonaws.com"
+                              + "oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A:sub" = "system:serviceaccount:kube-system:aws-load-balancer-controller"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Federated = "arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "aws-load-balancer-controller"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags_all              = (known after apply)
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0] will be created
+  + resource "aws_iam_role_policy_attachment" "load_balancer_controller" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "aws-load-balancer-controller"
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Creating...
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Creating...
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Creation complete after 3s [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Creation complete after 4s [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Creating...
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Creation complete after 0s [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Creating...
+helm_release.openmrs: Creating...
+helm_release.aws_load_balancer_controller: Still creating... [00m10s elapsed]
+helm_release.openmrs: Still creating... [00m10s elapsed]
+helm_release.aws_load_balancer_controller: Still creating... [00m20s elapsed]
+helm_release.openmrs: Still creating... [00m20s elapsed]
+helm_release.aws_load_balancer_controller: Still creating... [00m30s elapsed]
+helm_release.openmrs: Still creating... [00m30s elapsed]
+helm_release.aws_load_balancer_controller: Still creating... [00m40s elapsed]
+helm_release.openmrs: Still creating... [00m40s elapsed]
+helm_release.aws_load_balancer_controller: Still creating... [00m50s elapsed]
+helm_release.openmrs: Still creating... [00m50s elapsed]
+helm_release.aws_load_balancer_controller: Still creating... [01m00s elapsed]
+helm_release.aws_load_balancer_controller: Creation complete after 1m7s [id=aws-load-balancer-controller]
+╷
+│ Warning: Helm release created with warnings
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ Helm release "openmrs" was created but has a failed status. Use the `helm` command to investigate the error, correct it, then run Terraform again.
+╵
+╷
+│ Error: Helm release error
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ 6 errors occurred:
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "vingress.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/validate-networking-v1-ingress?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 
+│ 
+╵
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+
+
