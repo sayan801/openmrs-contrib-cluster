@@ -8,7 +8,7 @@ provider "aws" {
 
 # Create S3 bucket for storing Terraform state
 resource "aws_s3_bucket" "terraform_global" {
-  bucket = "openmrs-terraform-global"
+  bucket = "openmrs-terraform-global-technicise"
   # Enable versioning so we can see the full revision history of our
   # state files
   versioning {
@@ -38,7 +38,7 @@ resource "aws_dynamodb_table" "terraform_global_locks" {
 
 # Create S3 bucket for storing Terraform Helm state
 resource "aws_s3_bucket" "terraform_helm" {
-  bucket = "openmrs-terraform-helm"
+  bucket = "openmrs-terraform-helm-technicise"
   # Enable versioning so we can see the full revision history of our
   # state files
   versioning {

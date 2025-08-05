@@ -1,3 +1,3 @@
-bucket         = "openmrs-terraform-global"
+bucket         = "openmrs-terraform-global-technicise"
 dynamodb_table = "openmrs-terraform-global-locks"
 region         = "us-east-2"

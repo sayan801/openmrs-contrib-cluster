@@ -4,7 +4,7 @@ locals {
 
 terraform {
   backend "s3" {
-    bucket         = "openmrs-terraform-helm"
+    bucket         = "openmrs-terraform-helm-technicise"
     key            = "global/s3/terraform.tfstate"
     region         = "us-east-2"
     dynamodb_table = "openmrs-terraform-helm-locks"

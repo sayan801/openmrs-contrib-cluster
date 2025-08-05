@@ -110,7 +110,7 @@ Terraform will perform the following actions:
       + acceleration_status         = (known after apply)
       + acl                         = (known after apply)
       + arn                         = (known after apply)
-      + bucket                      = "openmrs-terraform-helm"
+      + bucket                      = "openmrs-terraform-helm-technicise"
       + bucket_domain_name          = (known after apply)
       + bucket_prefix               = (known after apply)
       + bucket_regional_domain_name = (known after apply)
