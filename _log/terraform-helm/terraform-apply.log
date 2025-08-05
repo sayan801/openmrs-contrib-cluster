@@ -970,3 +970,198 @@ Releasing state lock. This may take a few moments...
 (base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
 
 
+
+
+-------------------------------- 2nd time terraform apply --------------------------------
+
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 1s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Refreshing state... [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+data.aws_eks_cluster.default: Read complete after 3s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 4s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Refreshing state... [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Refreshing state... [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Refreshing state... [id=aws-load-balancer-controller]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+helm_release.openmrs: Creating...
+╷
+│ Error: installation failed
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ cannot re-use a name that is still in use
+╵
+Releasing state lock. This may take a few moments...
+
+technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ kubectl get pods
+NAME                          READY   STATUS             RESTARTS        AGE
+backend-0                     0/1     Running            3 (2m12s ago)   9m40s
+frontend-68f9ffc66f-fkj8q     1/1     Running            0               9m41s
+gateway-654d895f4-bx2nk       0/1     CrashLoopBackOff   6 (3m54s ago)   9m41s
+openmrs-mariadb-primary-0     1/1     Running            0               9m40s
+openmrs-mariadb-secondary-0   1/1     Running            3 (92s ago)     9m40s
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   172.20.0.1   <none>        443/TCP   54m
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ kubectl logs gateway-654d895f4-bx2nk
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+20-envsubst-on-templates.sh: Running envsubst on /etc/nginx/templates/default.conf.template to /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2025/08/05 07:38:43 [emerg] 1#1: host not found in upstream "frontend" in /etc/nginx/conf.d/default.conf:24
+nginx: [emerg] host not found in upstream "frontend" in /etc/nginx/conf.d/default.conf:24
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+
+
+technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ kubectl describe pod gateway-654d895f4-bx2nk
+Name:             gateway-654d895f4-bx2nk
+Namespace:        default
+Priority:         0
+Service Account:  gateway
+Node:             ip-10-0-2-218.us-east-2.compute.internal/10.0.2.218
+Start Time:       Tue, 05 Aug 2025 12:57:45 +0530
+Labels:           app.kubernetes.io/instance=openmrs
+                  app.kubernetes.io/managed-by=Helm
+                  app.kubernetes.io/name=openmrs-gateway
+                  app.kubernetes.io/version=3.1.0
+                  helm.sh/chart=openmrs-gateway-0.1.1
+                  pod-template-hash=654d895f4
+Annotations:      <none>
+Status:           Running
+IP:               10.0.2.44
+IPs:
+  IP:           10.0.2.44
+Controlled By:  ReplicaSet/gateway-654d895f4
+Containers:
+  openmrs-gateway:
+    Container ID:   containerd://6334b2d94ffd122b573fd9a817d1c5507bc22c8e388294b95a9a38142139b460
+    Image:          openmrs/openmrs-reference-application-3-gateway:3.1.0
+    Image ID:       docker.io/openmrs/openmrs-reference-application-3-gateway@sha256:dd6c453b8737640631f9dec37f88bb10e2b51ba2d804c6056a17f57acd6d80bc
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    1
+      Started:      Tue, 05 Aug 2025 13:13:55 +0530
+      Finished:     Tue, 05 Aug 2025 13:13:55 +0530
+    Ready:          False
+    Restart Count:  8
+    Liveness:       http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:      http-get http://:http/ delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cvptg (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-cvptg:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                   From               Message
+  ----     ------     ----                  ----               -------
+  Normal   Scheduled  19m                   default-scheduler  Successfully assigned default/gateway-654d895f4-bx2nk to ip-10-0-2-218.us-east-2.compute.internal
+  Normal   Pulling    19m                   kubelet            Pulling image "openmrs/openmrs-reference-application-3-gateway:3.1.0"
+  Normal   Pulled     19m                   kubelet            Successfully pulled image "openmrs/openmrs-reference-application-3-gateway:3.1.0" in 2.668s (2.668s including waiting). Image size: 20454861 bytes.
+  Normal   Created    18m (x4 over 19m)     kubelet            Created container: openmrs-gateway
+  Normal   Started    18m (x4 over 19m)     kubelet            Started container openmrs-gateway
+  Normal   Pulled     18m (x3 over 19m)     kubelet            Container image "openmrs/openmrs-reference-application-3-gateway:3.1.0" already present on machine
+  Warning  Unhealthy  18m (x2 over 19m)     kubelet            Readiness probe failed: Get "http://10.0.2.44:80/": dial tcp 10.0.2.44:80: connect: connection refused
+  Warning  BackOff    4m26s (x76 over 19m)  kubelet            Back-off restarting failed container openmrs-gateway in pod gateway-654d895f4-bx2nk_default(1671153c-3163-4d42-860e-5a7a978d83bb)
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
