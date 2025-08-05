@@ -1,0 +1,51 @@
+technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster$ cd terraform
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform$ terraform init
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Initializing modules...
+- bastion in modules/bastion_host
+- eks in modules/eks
+- rds in modules/rds
+- ses in modules/ses
+- vpc in modules/vpc
+╷
+│ Error: Unsupported Terraform Core version
+│ 
+│   on main.tf line 10, in terraform:
+│   10:   required_version = ">= 1.4.5, < 1.5"
+│ 
+│ This configuration does not support Terraform version 1.12.2. To proceed,
+│ either choose another supported Terraform version or update this version
+│ constraint. Version constraints are normally set for good reason, so updating
+│ the constraint may lead to other errors or unexpected behavior.
+╵
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform$ terraform init
+Initializing the backend...
+Initializing modules...
+Initializing provider plugins...
+- Finding latest version of hashicorp/random...
+- Finding hashicorp/aws versions matching ">= 5.0.1, < 5.1.0"...
+- Finding hashicorp/tls versions matching "4.0.6"...
+- Installing hashicorp/random v3.7.2...
+- Installed hashicorp/random v3.7.2 (signed by HashiCorp)
+- Installing hashicorp/aws v5.0.1...
+- Installed hashicorp/aws v5.0.1 (signed by HashiCorp)
+- Installing hashicorp/tls v4.0.6...
+- Installed hashicorp/tls v4.0.6 (signed by HashiCorp)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform$ 
