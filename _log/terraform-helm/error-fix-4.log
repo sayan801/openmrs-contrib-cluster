@@ -1,0 +1,228 @@
+kubectl logs openmrs-mariadb-secondary-0
+-----------------------------------------
+Defaulted container "mariadb" out of: mariadb, preserve-logs-symlinks (init)
+mariadb 08:37:08.89 INFO  ==> 
+mariadb 08:37:08.89 INFO  ==> Welcome to the Bitnami mariadb container
+mariadb 08:37:08.89 INFO  ==> Subscribe to project updates by watching https://github.com/bitnami/containers
+mariadb 08:37:08.89 INFO  ==> Did you know there are enterprise versions of the Bitnami catalog? For enhanced secure software supply chain features, unlimited pulls from Docker, LTS support, or application customization, see Bitnami Premium or Tanzu Application Catalog. See https://www.arrow.com/globalecs/na/vendors/bitnami/ for more information.
+mariadb 08:37:08.90 INFO  ==> 
+mariadb 08:37:08.90 INFO  ==> ** Starting MariaDB setup **
+mariadb 08:37:08.92 INFO  ==> Validating settings in MYSQL_*/MARIADB_* env vars
+mariadb 08:37:08.92 INFO  ==> Initializing mariadb database
+mariadb 08:37:09.00 WARN  ==> The mariadb configuration file '/opt/bitnami/mariadb/conf/my.cnf' is not writable. Configurations based on environment variables will not be applied for this file.
+mariadb 08:37:09.00 INFO  ==> Using persisted data
+mariadb 08:37:09.00 INFO  ==> Running mysql_upgrade
+mariadb 08:37:09.01 INFO  ==> Starting mariadb in background
+2025-08-05  8:37:09 0 [Note] Starting MariaDB 10.11.11-MariaDB-log source revision e69f8cae1a15e15b9e4f5e0f8497e1f17bdc81a4 server_uid rO34Ii/LOz30Xz6OdqVJ3J/vxZ0= as process 42
+2025-08-05  8:37:09 0 [Note] InnoDB: Compressed tables use zlib 1.2.13
+2025-08-05  8:37:09 0 [Note] InnoDB: Number of transaction pools: 1
+2025-08-05  8:37:09 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+2025-08-05  8:37:09 0 [Note] InnoDB: Using Linux native AIO
+2025-08-05  8:37:09 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+2025-08-05  8:37:09 0 [Note] InnoDB: Completed initialization of buffer pool
+2025-08-05  8:37:09 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+2025-08-05  8:37:09 0 [Note] InnoDB: End of log at LSN=46980
+2025-08-05  8:37:09 0 [Note] InnoDB: 128 rollback segments are active.
+2025-08-05  8:37:09 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2025-08-05  8:37:09 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2025-08-05  8:37:09 0 [Note] InnoDB: log sequence number 46980; transaction id 14
+2025-08-05  8:37:09 0 [Note] Plugin 'FEEDBACK' is disabled.
+2025-08-05  8:37:09 0 [Note] InnoDB: Loading buffer pool(s) from /bitnami/mariadb/data/ib_buffer_pool
+2025-08-05  8:37:09 0 [Note] InnoDB: Buffer pool(s) load completed at 250805  8:37:09
+2025-08-05  8:37:09 0 [Warning] 'proxies_priv' entry '@% root@openmrs-mariadb-secondary-0' ignored in --skip-name-resolve mode.
+2025-08-05  8:37:09 0 [Note] /opt/bitnami/mariadb/sbin/mysqld: ready for connections.
+Version: '10.11.11-MariaDB-log'  socket: '/opt/bitnami/mariadb/tmp/mysql.sock'  port: 0  Source distribution
+2025-08-05  8:37:11 4 [Warning] Access denied for user 'root'@'localhost' (using password: YES)
+This installation is already upgraded
+find: '/docker-entrypoint-startdb.d/': No such file or directory
+mariadb 08:37:11.04 INFO  ==> Stopping mariadb
+2025-08-05  8:37:11 0 [Note] /opt/bitnami/mariadb/sbin/mysqld (initiated by: unknown): Normal shutdown
+2025-08-05  8:37:11 0 [Note] InnoDB: FTS optimize thread exiting.
+2025-08-05  8:37:11 0 [Note] InnoDB: Starting shutdown...
+2025-08-05  8:37:11 0 [Note] InnoDB: Dumping buffer pool(s) to /bitnami/mariadb/data/ib_buffer_pool
+2025-08-05  8:37:11 0 [Note] InnoDB: Buffer pool(s) dump completed at 250805  8:37:11
+2025-08-05  8:37:11 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+2025-08-05  8:37:11 0 [Note] InnoDB: Shutdown completed; log sequence number 46980; transaction id 15
+2025-08-05  8:37:11 0 [Note] /opt/bitnami/mariadb/sbin/mysqld: Shutdown complete
+mariadb 08:37:12.05 INFO  ==> ** MariaDB setup finished! **
+
+mariadb 08:37:12.09 INFO  ==> ** Starting MariaDB **
+2025-08-05  8:37:12 0 [Note] Starting MariaDB 10.11.11-MariaDB-log source revision e69f8cae1a15e15b9e4f5e0f8497e1f17bdc81a4 server_uid EHN90iNJf5z7HkenaviHvzJ8YvY= as process 1
+2025-08-05  8:37:12 0 [Note] InnoDB: Compressed tables use zlib 1.2.13
+2025-08-05  8:37:12 0 [Note] InnoDB: Number of transaction pools: 1
+2025-08-05  8:37:12 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+2025-08-05  8:37:12 0 [Note] InnoDB: Using Linux native AIO
+2025-08-05  8:37:12 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+2025-08-05  8:37:12 0 [Note] InnoDB: Completed initialization of buffer pool
+2025-08-05  8:37:12 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+2025-08-05  8:37:12 0 [Note] InnoDB: End of log at LSN=46980
+2025-08-05  8:37:12 0 [Note] InnoDB: 128 rollback segments are active.
+2025-08-05  8:37:12 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2025-08-05  8:37:12 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2025-08-05  8:37:12 0 [Note] InnoDB: log sequence number 46980; transaction id 14
+2025-08-05  8:37:12 0 [Note] InnoDB: Loading buffer pool(s) from /bitnami/mariadb/data/ib_buffer_pool
+2025-08-05  8:37:12 0 [Note] Plugin 'FEEDBACK' is disabled.
+2025-08-05  8:37:12 0 [Note] InnoDB: Buffer pool(s) load completed at 250805  8:37:12
+2025-08-05  8:37:12 0 [Note] Server socket created on IP: '0.0.0.0'.
+2025-08-05  8:37:12 0 [Warning] 'proxies_priv' entry '@% root@openmrs-mariadb-secondary-0' ignored in --skip-name-resolve mode.
+2025-08-05  8:37:12 0 [Note] /opt/bitnami/mariadb/sbin/mysqld: ready for connections.
+Version: '10.11.11-MariaDB-log'  socket: '/opt/bitnami/mariadb/tmp/mysql.sock'  port: 3306  Source distribution
+
+
+
+
+
+kubectl describe pod openmrs-mariadb-secondary-0
+-----------------------------------------
+
+Name:             openmrs-mariadb-secondary-0
+Namespace:        default
+Priority:         0
+Service Account:  openmrs-mariadb
+Node:             ip-10-0-2-218.us-east-2.compute.internal/10.0.2.218
+Start Time:       Tue, 05 Aug 2025 13:46:51 +0530
+Labels:           app.kubernetes.io/component=secondary
+                  app.kubernetes.io/instance=openmrs
+                  app.kubernetes.io/managed-by=Helm
+                  app.kubernetes.io/name=mariadb
+                  app.kubernetes.io/version=11.4.3
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=openmrs-mariadb-secondary-79bbfdcff4
+                  helm.sh/chart=mariadb-19.0.5
+                  statefulset.kubernetes.io/pod-name=openmrs-mariadb-secondary-0
+Annotations:      checksum/configuration: 967c4cb8b74107cdfa44512f8305fc8a03daf9201e61cf2101dfde2bb9d83874
+Status:           Running
+IP:               10.0.2.44
+IPs:
+  IP:           10.0.2.44
+Controlled By:  StatefulSet/openmrs-mariadb-secondary
+Init Containers:
+  preserve-logs-symlinks:
+    Container ID:    containerd://ce23527e06b331cf75572d09d22e94456d30788d8e9c26aa9ed056bf6167ebb2
+    Image:           docker.io/bitnami/mariadb:10.11
+    Image ID:        docker.io/bitnami/mariadb@sha256:520b4ad80cc887bead3bf415cb0813c1bd9951c590f468b78eb85be1d6a5d084
+    Port:            <none>
+    Host Port:       <none>
+    SeccompProfile:  RuntimeDefault
+    Command:
+      /bin/bash
+    Args:
+      -ec
+      #!/bin/bash
+      
+      . /opt/bitnami/scripts/libfs.sh
+      # We copy the logs folder because it has symlinks to stdout and stderr
+      if ! is_dir_empty /opt/bitnami/mariadb/logs; then
+        cp -r /opt/bitnami/mariadb/logs /emptydir/app-logs-dir
+      fi
+      
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Tue, 05 Aug 2025 13:46:58 +0530
+      Finished:     Tue, 05 Aug 2025 13:46:58 +0530
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:                375m
+      ephemeral-storage:  2Gi
+      memory:             384Mi
+    Requests:
+      cpu:                250m
+      ephemeral-storage:  50Mi
+      memory:             256Mi
+    Environment:          <none>
+    Mounts:
+      /emptydir from empty-dir (rw)
+Containers:
+  mariadb:
+    Container ID:    containerd://3f8df7dc3471311b594abc2b990833755a1eac276dba1fa6ae528f03151534f3
+    Image:           docker.io/bitnami/mariadb:10.11
+    Image ID:        docker.io/bitnami/mariadb@sha256:520b4ad80cc887bead3bf415cb0813c1bd9951c590f468b78eb85be1d6a5d084
+    Port:            3306/TCP
+    Host Port:       0/TCP
+    SeccompProfile:  RuntimeDefault
+    State:           Running
+      Started:       Tue, 05 Aug 2025 14:07:08 +0530
+    Last State:      Terminated
+      Reason:        Completed
+      Exit Code:     0
+      Started:       Tue, 05 Aug 2025 14:01:58 +0530
+      Finished:      Tue, 05 Aug 2025 14:04:28 +0530
+    Ready:           True
+    Restart Count:   7
+    Limits:
+      cpu:                375m
+      ephemeral-storage:  2Gi
+      memory:             384Mi
+    Requests:
+      cpu:                250m
+      ephemeral-storage:  50Mi
+      memory:             256Mi
+    Liveness:             exec [/bin/bash -ec password_aux="${MARIADB_MASTER_ROOT_PASSWORD:-}"
+if [[ -f "${MARIADB_MASTER_ROOT_PASSWORD_FILE:-}" ]]; then
+    password_aux=$(cat "$MARIADB_MASTER_ROOT_PASSWORD_FILE")
+fi
+mariadb-admin status -uroot -p"${password_aux}"
+] delay=120s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  exec [/bin/bash -ec password_aux="${MARIADB_MASTER_ROOT_PASSWORD:-}"
+if [[ -f "${MARIADB_MASTER_ROOT_PASSWORD_FILE:-}" ]]; then
+    password_aux=$(cat "$MARIADB_MASTER_ROOT_PASSWORD_FILE")
+fi
+mariadb-admin ping -uroot -p"${password_aux}"
+] delay=30s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      BITNAMI_DEBUG:                 false
+      MARIADB_REPLICATION_MODE:      slave
+      MARIADB_MASTER_HOST:           openmrs-mariadb-primary
+      MARIADB_MASTER_PORT_NUMBER:    3306
+      MARIADB_MASTER_ROOT_USER:      root
+      MARIADB_MASTER_ROOT_PASSWORD:  <set to the key 'mariadb-root-password' in secret 'openmrs-mariadb'>  Optional: false
+      MARIADB_REPLICATION_USER:      replicator
+      MARIADB_REPLICATION_PASSWORD:  <set to the key 'mariadb-replication-password' in secret 'openmrs-mariadb'>  Optional: false
+    Mounts:
+      /bitnami/mariadb from data (rw)
+      /opt/bitnami/mariadb/conf from empty-dir (rw,path="app-conf-dir")
+      /opt/bitnami/mariadb/conf/my.cnf from config (rw,path="my.cnf")
+      /opt/bitnami/mariadb/logs from empty-dir (rw,path="app-logs-dir")
+      /opt/bitnami/mariadb/tmp from empty-dir (rw,path="app-tmp-dir")
+      /tmp from empty-dir (rw,path="tmp-dir")
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  data:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  data-openmrs-mariadb-secondary-0
+    ReadOnly:   false
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      openmrs-mariadb-secondary
+    Optional:  false
+  empty-dir:
+    Type:        EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:      
+    SizeLimit:   <unset>
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                   From                     Message
+  ----     ------                  ----                  ----                     -------
+  Normal   Scheduled               22m                   default-scheduler        Successfully assigned default/openmrs-mariadb-secondary-0 to ip-10-0-2-218.us-east-2.compute.internal
+  Normal   SuccessfulAttachVolume  22m                   attachdetach-controller  AttachVolume.Attach succeeded for volume "pvc-6b9635ac-d3f2-4e31-b576-05dad0709af7"
+  Normal   Pulled                  22m                   kubelet                  Container image "docker.io/bitnami/mariadb:10.11" already present on machine
+  Normal   Created                 22m                   kubelet                  Created container: preserve-logs-symlinks
+  Normal   Started                 22m                   kubelet                  Started container preserve-logs-symlinks
+  Normal   Started                 17m (x3 over 22m)     kubelet                  Started container mariadb
+  Normal   Created                 14m (x4 over 22m)     kubelet                  Created container: mariadb
+  Normal   Killing                 14m (x3 over 19m)     kubelet                  Container mariadb failed liveness probe, will be restarted
+  Warning  Unhealthy               7m22s (x18 over 20m)  kubelet                  Liveness probe failed: mariadb-admin: connect to server at 'localhost' failed
+error: 'Access denied for user 'root'@'localhost' (using password: YES)'
+  Normal  Pulled  2m12s (x8 over 22m)  kubelet  Container image "docker.io/bitnami/mariadb:10.11" already present on machine
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster$ 
