@@ -1,0 +1,516 @@
+helm_release.aws_load_balancer_controller: Creation complete after 1m7s [id=aws-load-balancer-controller]
+╷
+│ Warning: Helm release created with warnings
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ Helm release "openmrs" was created but has a failed status. Use the `helm` command to investigate the error, correct it, then run Terraform again.
+╵
+╷
+│ Error: Helm release error
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ 6 errors occurred:
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 	* Internal error occurred: failed calling webhook "vingress.elbv2.k8s.aws": failed to call webhook: Post
+│ "https://aws-load-balancer-webhook-service.kube-system.svc:443/validate-networking-v1-ingress?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+│ 
+│ 
+╵
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+
+
+
+
+
+------------------------------ github copilot -----------------------------------------
+Your gateway pod is crashing because of this error in the logs:
+
+What this means:
+The NGINX config in the gateway container is trying to proxy to a service called frontend, but Kubernetes DNS cannot resolve frontend—most likely because there is no Kubernetes Service named frontend in the same namespace.
+
+How to fix
+Check if the frontend service exists:
+
+If you do not see a service named frontend, that's the problem.
+
+If you have a frontend deployment, expose it as a service:
+
+(Adjust the port if your frontend container listens on a different port.)
+
+If you do not have a frontend deployment, you need to deploy one.
+The gateway expects to route traffic to a service called frontend.
+
+Summary
+The gateway pod will not start until the frontend service exists.
+Create the frontend service (and deployment if missing).
+Once the service is present, the gateway pod should start successfully.
+Let me know if you need help creating the frontend deployment or service!
+
+
+----------------------------------------------------------------------------------------
+
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Refreshing state... [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+data.aws_eks_cluster.default: Read complete after 2s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 2s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Refreshing state... [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Refreshing state... [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Refreshing state... [id=aws-load-balancer-controller]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+helm_release.openmrs: Creating...
+╷
+│ Error: installation failed
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ cannot re-use a name that is still in use
+╵
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ kubectl get ingress
+No resources found in default namespace.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Refreshing state... [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+data.aws_eks_cluster.default: Read complete after 2s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 7s [id=100074083541]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Refreshing state... [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Refreshing state... [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Refreshing state... [id=aws-load-balancer-controller]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+Releasing state lock. This may take a few moments...
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Refreshing state... [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+data.aws_eks_cluster.default: Read complete after 1s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 2s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Refreshing state... [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Refreshing state... [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Refreshing state... [id=aws-load-balancer-controller]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+helm_release.openmrs: Creating...
+╷
+│ Error: installation failed
+│ 
+│   with helm_release.openmrs,
+│   on main.tf line 91, in resource "helm_release" "openmrs":
+│   91: resource "helm_release" "openmrs" {
+│ 
+│ cannot re-use a name that is still in use
+╵
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ helm list
+Command 'helm' not found, but can be installed with:
+sudo snap install helm
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform import helm_release.openmrs openmrs
+Acquiring state lock. This may take a few moments...
+var.environment
+  Name of the environment with which resource names would be suffixed
+
+  Enter a value: yes
+
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 2s [id=100074083541]
+╷
+│ Error: reading EKS Cluster (openmrs-cluster-yes): couldn't find resource
+│ 
+│   with data.aws_eks_cluster.default,
+│   on /home/technicise-laptop-2/code/openmrs-contrib-cluster/terraform-helm/main.tf line 19, in data "aws_eks_cluster" "default":
+│   19: data "aws_eks_cluster" "default" {
+│ 
+╵
+
+Releasing state lock. This may take a few moments...
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ helm list
+NAME   	NAMESPACE	REVISION	UPDATED                                	STATUS	CHART        	APP VERSION
+openmrs	default  	1       	2025-08-05 12:56:59.523822656 +0530 IST	failed	openmrs-0.1.5	3.1.0      
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ helm status openmrs
+NAME: openmrs
+LAST DEPLOYED: Tue Aug  5 12:56:59 2025
+NAMESPACE: default
+STATUS: failed
+REVISION: 1
+NOTES:
+CHART NAME: mariadb
+CHART VERSION: 19.0.5
+APP VERSION: 11.4.3
+
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+  Watch the deployment status using the command: kubectl get pods -w --namespace default -l app.kubernetes.io/instance=openmrs
+
+Services:
+
+  echo Primary: openmrs-mariadb-primary.default.svc.cluster.local:3306
+  echo Secondary: openmrs-mariadb-secondary.default.svc.cluster.local:3306
+
+Administrator credentials:
+
+  Username: root
+  Password : $(kubectl get secret --namespace default openmrs-mariadb -o jsonpath="{.data.mariadb-root-password}" | base64 -d)
+
+To connect to your database:
+
+  1. Run a pod that you can use as a client:
+
+      kubectl run openmrs-mariadb-client --rm --tty -i --restart='Never' --image  docker.io/bitnami/mariadb:10.11 --namespace default --command -- bash
+
+  2. To connect to primary service (read/write):
+
+      mysql -h openmrs-mariadb-primary.default.svc.cluster.local -uroot -p openmrs
+
+  3. To connect to secondary service (read-only):
+
+      mysql -h openmrs-mariadb-secondary.default.svc.cluster.local -uroot -p openmrs
+
+To upgrade this helm chart:
+
+  1. Obtain the password as described on the 'Administrator credentials' section and set the 'auth.rootPassword' parameter as shown below:
+
+      ROOT_PASSWORD=$(kubectl get secret --namespace default openmrs-mariadb -o jsonpath="{.data.mariadb-root-password}" | base64 -d)
+      helm upgrade --namespace default openmrs oci://registry-1.docker.io/bitnamicharts/mariadb --set auth.rootPassword=$ROOT_PASSWORD
+WARNING: Rolling tag detected (bitnami/mariadb:10.11), please note that it is strongly recommended to avoid using rolling tags in a production environment.
++info https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/services/tutorials/GUID-understand-rolling-tags-containers-index.html
+
+WARNING: There are "resources" sections in the chart not set. Using "resourcesPreset" is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - primary.resources
+  - secondary.resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+⚠ SECURITY WARNING: Original containers have been substituted. This Helm chart was designed, tested, and validated on multiple platforms using a specific set of Bitnami and Tanzu Application Catalog containers. Substituting other containers is likely to cause degraded security and performance, broken chart features, and missing environment variables.
+
+Substituted images detected:
+  - docker.io/bitnami/mariadb:%!s(float64=10.11)
+OpenMRS Gateway has been successfully deployed!
+
+Get the application URL by running these commands:
+
+OpenMRS Frontend has been successfully deployed!
+
+Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=openmrs-frontend,app.kubernetes.io/instance=openmrs" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
+
+OpenMRS Backend has been successfully deployed!
+
+Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=openmrs-backend,app.kubernetes.io/instance=openmrs" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
+
+OpenMRS has been successfully deployed!
+
+It may take a few minutes for the OpenMRS application to be accessible. You can watch the status by running
+and waiting for all pods to be ready:
+
+kubectl get pods --namespace default
+
+Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services openmrs)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ helm uninstall openmrs
+release "openmrs" uninstalled
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Reading...
+data.aws_eks_cluster.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_partition.current: Read complete after 0s [id=aws]
+module.aws_load_balancer_controller_irsa_role.data.aws_region.current: Read complete after 0s [id=us-east-2]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.load_balancer_controller[0]: Read complete after 0s [id=3921743575]
+module.aws_load_balancer_controller_irsa_role.aws_iam_policy.load_balancer_controller[0]: Refreshing state... [id=arn:aws:iam::100074083541:policy/AmazonEKS_AWS_Load_Balancer_Controller-20250805072648287400000001]
+data.aws_eks_cluster.default: Read complete after 1s [id=openmrs-cluster-nonprod]
+data.aws_iam_openid_connect_provider.default: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_caller_identity.current: Read complete after 2s [id=100074083541]
+data.aws_iam_openid_connect_provider.default: Read complete after 2s [id=arn:aws:iam::100074083541:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/19BBB2D541AD380D3526ED47FC97430A]
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Reading...
+module.aws_load_balancer_controller_irsa_role.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=4026829289]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role.this[0]: Refreshing state... [id=aws-load-balancer-controller]
+module.aws_load_balancer_controller_irsa_role.aws_iam_role_policy_attachment.load_balancer_controller[0]: Refreshing state... [id=aws-load-balancer-controller-20250805072651992400000002]
+helm_release.aws_load_balancer_controller: Refreshing state... [id=aws-load-balancer-controller]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # helm_release.openmrs will be created
+  + resource "helm_release" "openmrs" {
+      + atomic                     = false
+      + chart                      = "openmrs"
+      + cleanup_on_fail            = false
+      + create_namespace           = false
+      + dependency_update          = false
+      + disable_crd_hooks          = false
+      + disable_openapi_validation = false
+      + disable_webhooks           = false
+      + force_update               = false
+      + id                         = (known after apply)
+      + lint                       = false
+      + max_history                = 0
+      + metadata                   = (known after apply)
+      + name                       = "openmrs"
+      + namespace                  = "default"
+      + pass_credentials           = false
+      + recreate_pods              = false
+      + render_subchart_notes      = true
+      + replace                    = false
+      + repository                 = "oci://registry-1.docker.io/openmrs"
+      + reset_values               = false
+      + reuse_values               = false
+      + set                        = [
+          + {
+              + name  = "openmrs-gateway.ingress.enabled"
+              + value = "true"
+                # (1 unchanged attribute hidden)
+            },
+          + {
+              + name  = "openmrs-gateway.ingress.className"
+              + value = "alb"
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + set_wo                     = (write-only attribute)
+      + skip_crds                  = false
+      + status                     = "deployed"
+      + timeout                    = 300
+      + verify                     = false
+      + version                    = "0.1.5"
+      + wait                       = true
+      + wait_for_jobs              = false
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+helm_release.openmrs: Creating...
+helm_release.openmrs: Still creating... [00m10s elapsed]
+helm_release.openmrs: Still creating... [00m20s elapsed]
+helm_release.openmrs: Still creating... [00m30s elapsed]
+helm_release.openmrs: Still creating... [00m40s elapsed]
+helm_release.openmrs: Still creating... [00m50s elapsed]
+helm_release.openmrs: Still creating... [01m00s elapsed]
+helm_release.openmrs: Still creating... [01m10s elapsed]
+helm_release.openmrs: Still creating... [01m20s elapsed]
+helm_release.openmrs: Still creating... [01m30s elapsed]
+helm_release.openmrs: Still creating... [01m40s elapsed]
+helm_release.openmrs: Still creating... [01m50s elapsed]
+helm_release.openmrs: Still creating... [02m00s elapsed]
+helm_release.openmrs: Still creating... [02m10s elapsed]
+helm_release.openmrs: Still creating... [02m20s elapsed]
+helm_release.openmrs: Still creating... [02m30s elapsed]
+helm_release.openmrs: Still creating... [02m40s elapsed]
+helm_release.openmrs: Still creating... [02m50s elapsed]
+helm_release.openmrs: Still creating... [03m00s elapsed]
+helm_release.openmrs: Creation complete after 3m1s [id=openmrs]
+Releasing state lock. This may take a few moments...
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ 
+
+
+
+
+
+
+
+------------------------------ github copilot -----------------------------------------
+
+---------------------------------------------------------------------------------------

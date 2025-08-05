@@ -1,0 +1,133 @@
+(base) technicise-laptop-2@technicise-laptop-2-Vostro-3500:~/code/openmrs-contrib-cluster/terraform-helm$ terraform apply -var-file=nonprod.tfvars
+Acquiring state lock. This may take a few moments...
+Releasing state lock. This may take a few moments...
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 63, in resource "helm_release" "aws_load_balancer_controller":
+│   63:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 68, in resource "helm_release" "aws_load_balancer_controller":
+│   68:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 73, in resource "helm_release" "aws_load_balancer_controller":
+│   73:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 78, in resource "helm_release" "aws_load_balancer_controller":
+│   78:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 83, in resource "helm_release" "aws_load_balancer_controller":
+│   83:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 88, in resource "helm_release" "aws_load_balancer_controller":
+│   88:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 101, in resource "helm_release" "openmrs":
+│  101:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+╷
+│ Error: Unsupported block type
+│ 
+│   on main.tf line 106, in resource "helm_release" "openmrs":
+│  106:   set {
+│ 
+│ Blocks of type "set" are not expected here. Did you mean to define argument "set"? If so, use the equals sign to assign it a value.
+╵
+
+
+------------------------------ github copilot -----------------------------------------
+
+You are using the new Helm provider syntax which no longer supports set blocks.
+Instead, use the set argument as a list of maps.
+
+Replace all your set { ... } blocks with a single set = [...] argument, like this:
+
+
+resource "helm_release" "aws_load_balancer_controller" {
+  name       = "aws-load-balancer-controller"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
+  namespace  = "kube-system"
+  version    = "1.11"
+
+  set = [
+    {
+      name  = "region"
+      value = local.region
+    },
+    {
+      name  = "vpcId"
+      value = data.aws_eks_cluster.default.vpc_config[0].vpc_id
+    },
+    {
+      name  = "clusterName"
+      value = data.aws_eks_cluster.default.id
+    },
+    {
+      name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+      value = module.aws_load_balancer_controller_irsa_role.iam_role_arn
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "ingressClassParams.spec.scheme"
+      value = "internet-facing"
+    }
+  ]
+}
+
+resource "helm_release" "openmrs" {
+  name       = "openmrs"
+  repository = "oci://registry-1.docker.io/openmrs"
+  chart      = "openmrs"
+  version    = "0.1.5"
+
+  set = [
+    {
+      name  = "openmrs-gateway.ingress.enabled"
+      value = "true"
+    },
+    {
+      name  = "openmrs-gateway.ingress.className"
+      value = "alb"
+    }
+  ]
+}
+
+----------------------------------------------------------------------------------------
+
+this error fixed with above suggestion
