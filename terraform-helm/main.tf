@@ -97,6 +97,22 @@ resource "helm_release" "openmrs" {
 
   set = [
     {
+      name  = "openmrs-backend.image.repository"
+      value = "technicise/openmrs-core-custom"
+    },
+    {
+      name  = "openmrs-backend.image.tag"
+      value = "2.7.4"
+    },
+    {
+      name  = "openmrs-backend.image.pullPolicy"
+      value = "Always"
+    },
+    {
+      name  = "openmrs-backend.imagePullSecrets[0].name"
+      value = "myregistrykey"
+    },  
+    {
       name  = "openmrs-gateway.ingress.enabled"
       value = "true"
     },
